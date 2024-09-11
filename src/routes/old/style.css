@@ -1,0 +1,286 @@
+:root {
+  --black: #101010;
+  --white: #eeeeee;
+  --dark-grey: #222222;
+  --grey: #bebebe;
+  --bg: var(--black);
+  --bg-tint: var(--dark-grey);
+
+  --fg: var(--white);
+  --fg-shade: var(--grey);
+
+  --space: 1.62;
+  --vspace: calc(var(--space) * 1rem);
+  --vspace-0: calc(3 * var(--space) * 1rem);
+  --vspace-1: calc(2 * var(--space) * 1rem);
+  --vspace-2: calc(1.5 * var(--space) * 1rem);
+  --vspace-3: calc(0.5 * var(--space) * 1rem);
+
+  --fs-xs: clamp(0.75rem, 0.008941vi + 52.65rem, 1.13rem);
+  --fs-base: clamp(1rem, 0.011765vi + 70.59rem, 1.5rem);
+  --fs-s: clamp(1.33rem, 0.015765vi + 93.59rem, 2rem);
+  --fs-m: clamp(1.78rem, 0.020941vi + 125.65rem, 2.67rem);
+  --fs-l: clamp(2.37rem, 0.028vi + 167rem, 3.56rem);
+  --fs-xl: clamp(3.16rem, 0.037176vi + 223.06rem, 4.74rem);
+  --fs-xxl: clamp(4.21rem, 0.049647vi + 296.88rem, 6.32rem);
+  --fs-xxxl: clamp(5.62rem, 0.066118vi + 396.71rem, 8.43rem);
+
+  --input-shadow: inset 0 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.09),
+    0 2px 4px 0 rgba(0, 0, 0, 0.15), 0 1px 1.5px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 transparent;
+}
+
+p {
+  line-height: calc(2px + 2ex + 2px));
+}
+
+h1 {
+  color: var(--deep-shade);
+  margin: var(--vspace-1) 0 var(--vspace-1) 0;
+  line-height: calc(8 / var(--space) * var(--vspace));
+}
+
+h2 {
+  margin: var(--vspace-2) 0 var(--vspace-3) 0;
+  line-height: 1em;
+}
+
+h3 {
+  margin: var(--vspace-1) 0 var(--vspace-3) 0;
+  line-height: 1em;
+}
+
+h4,
+h5,
+h6 {
+  margin: var(--vspace-2) 0 var(--vspace-3) 0;
+  line-height: var(--vspace);
+}
+
+.bigtitle,
+h1 {
+  font-size: var(--fs-l);
+}
+
+.title,
+h2 {
+  font-size: var(--fs-m);
+}
+
+.subheading1,
+h3 {
+  font-size: var(--fs-s);
+}
+
+blockquote {
+  font-size: 1em;
+  font-style: italic;
+  line-height: calc(1 * var(--vspace));
+  margin: var(--vspace-2) var(--vspace-2);
+}
+
+.subheading2,
+h4 {
+  font-size: var(--fs-base);
+}
+
+.subheading3,
+h5 {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.15em;
+}
+
+.subheading4,
+h6 {
+  font-size: var(--fs-xs);
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-size: 1em;
+  margin: 0 auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  tab-size: 20px;
+}
+
+.readable {
+  max-width: 900px;
+  width: 100%;
+}
+
+.readable-center {
+  margin-inline: auto;
+}
+
+.readable-code {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  grid-gap: 20px;
+}
+
+.layout {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: [start] 2.5vw [content] 95vw [content] 2.5vw [end];
+}
+
+.layout-sidebar {
+  --side-bar-width: 300px;
+  --layout-margin: 2.5vw;
+  grid-template-columns:
+    [start] var(--layout-margin) [main sidebar] var(--side-bar-width)
+    [sidebar gap]
+    var(--layout-margin)
+    [gap content] auto [content main] var(--layout-margin)
+    [end];
+  display: grid;
+}
+
+:is(.layout, .layout-sidebar) > * {
+  grid-column: content/content;
+}
+
+.full {
+  width: 100%;
+  grid-column: start / end;
+}
+
+.content {
+  width: 100%;
+  grid-column: content / content;
+}
+
+.l-margin {
+  width: 100%;
+  grid-column: l-margin / l-margin;
+}
+
+.r-margin {
+  width: 100%;
+  grid-column: r-margin / r-margin;
+}
+.sidebar {
+  width: 100%;
+  grid-column: sidebar / sidebar;
+}
+.main {
+  width: 100%;
+  grid-column: main / main;
+}
+
+input, select {
+	background: #1b1b1b;
+	border: none;
+	border-radius: 4px;
+	color: var(--fg);
+	box-shadow: var(--input-shadow);
+	line-height: 2.3;
+	padding-inline: 10px;
+}
+
+select {
+	height: 32px;
+}
+
+button {
+  background: #363636;
+  border: none;
+  border-radius: 4px;
+  color: var(--fg);
+  box-shadow: var(--input-shadow);
+  line-height: 2.3;
+  padding-inline: 10px;
+}
+
+.shiki {
+  border-radius: 4px;
+  border: solid 1px var(--bg-tint);
+  font-size: var(--text-size-p);
+  padding: 20px;
+  box-shadow: var(--input-shadow);
+  overflow-x: auto;
+}
+.shiki .line {
+  line-height: 1.5;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+:root {
+  --font-size-min: 17;
+  --font-size-max: 20;
+  --font-ratio-min: 1.2;
+  --font-ratio-max: 1.33;
+  --font-width-min: 320;
+  --font-width-max: 1500;
+	/* --variable-unit: 100cqi; */
+	--fluid-min: calc(
+    var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
+  );
+  --fluid-max: calc(
+    var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
+  );
+  --fluid-preferred: calc(
+    (var(--fluid-max) - var(--fluid-min)) /
+      (var(--font-width-max) - var(--font-width-min))
+  );
+  --fluid-type: clamp(
+    (var(--fluid-min) / 16) * 1rem,
+    ((var(--fluid-min) / 16) * 1rem) -
+      (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+      (var(--fluid-preferred) * var(--variable-unit, 100vi)),
+    (var(--fluid-max) / 16) * 1rem
+  );
+}
+
+[data-container='true'] :where(dd) {
+  --variable-unit: 100cqi;
+}
+
+.fluid {
+		--font-size-min: 17;
+		--font-size-max: 20;
+		--font-ratio-min: 1.2;
+		--font-ratio-max: 1.33;
+		--font-width-min: 320;
+		--font-width-max: 1500;
+		--fluid-min: calc(var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0)));
+		--fluid-max: calc(var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0)));
+		--fluid-preferred: calc(
+			(var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min))
+		);
+		--fluid-type: clamp(
+			(var(--fluid-min) / 16) * 1rem,
+			((var(--fluid-min) / 16) * 1rem) -
+				(((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+				(var(--fluid-preferred) * var(--variable-unit, 100vi)),
+			(var(--fluid-max) / 16) * 1rem
+		);
+		font-size: var(--fluid-type);
+}
+
+.fluid-text-container {
+	container-type: inline-size;
+  --variable-unit: 100cqi;
+}

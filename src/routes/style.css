@@ -1,3 +1,31 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
+
 :root {
   --black: #101010;
   --white: #eeeeee;
@@ -9,91 +37,17 @@
   --fg: var(--white);
   --fg-shade: var(--grey);
 
-  --space: 1.62;
-  --vspace: calc(var(--space) * 1rem);
-  --vspace-0: calc(3 * var(--space) * 1rem);
-  --vspace-1: calc(2 * var(--space) * 1rem);
-  --vspace-2: calc(1.5 * var(--space) * 1rem);
-  --vspace-3: calc(0.5 * var(--space) * 1rem);
-
-  --fs-xs: clamp(0.75rem, 0.008941vi + 52.65rem, 1.13rem);
-  --fs-base: clamp(1rem, 0.011765vi + 70.59rem, 1.5rem);
-  --fs-s: clamp(1.33rem, 0.015765vi + 93.59rem, 2rem);
-  --fs-m: clamp(1.78rem, 0.020941vi + 125.65rem, 2.67rem);
-  --fs-l: clamp(2.37rem, 0.028vi + 167rem, 3.56rem);
-  --fs-xl: clamp(3.16rem, 0.037176vi + 223.06rem, 4.74rem);
-  --fs-xxl: clamp(4.21rem, 0.049647vi + 296.88rem, 6.32rem);
-  --fs-xxxl: clamp(5.62rem, 0.066118vi + 396.71rem, 8.43rem);
+	--vs-base: 1rem;
+	--vs-s: 0.5rem;
+	--vs-xs: 0.25rem;
+	--vs-l: 2rem;
 
   --input-shadow: inset 0 0.5px 0.5px 0.5px rgba(255, 255, 255, 0.09),
     0 2px 4px 0 rgba(0, 0, 0, 0.15), 0 1px 1.5px 0 rgba(0, 0, 0, 0.1),
     0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 0 0 0 transparent;
 }
 
-p {
-  line-height: calc(2px + 2ex + 2px));
-}
 
-h1 {
-  color: var(--deep-shade);
-  margin: var(--vspace-1) 0 var(--vspace-1) 0;
-  line-height: calc(8 / var(--space) * var(--vspace));
-}
-
-h2 {
-  margin: var(--vspace-2) 0 var(--vspace-3) 0;
-  line-height: 1em;
-}
-
-h3 {
-  margin: var(--vspace-1) 0 var(--vspace-3) 0;
-  line-height: 1em;
-}
-
-h4,
-h5,
-h6 {
-  margin: var(--vspace-2) 0 var(--vspace-3) 0;
-  line-height: var(--vspace);
-}
-
-.bigtitle,
-h1 {
-  font-size: var(--fs-l);
-}
-
-.title,
-h2 {
-  font-size: var(--fs-m);
-}
-
-.subheading1,
-h3 {
-  font-size: var(--fs-s);
-}
-
-blockquote {
-  font-size: 1em;
-  font-style: italic;
-  line-height: calc(1 * var(--vspace));
-  margin: var(--vspace-2) var(--vspace-2);
-}
-
-.subheading2,
-h4 {
-  font-size: var(--fs-base);
-}
-
-.subheading3,
-h5 {
-  font-size: var(--fs-xs);
-  letter-spacing: 0.15em;
-}
-
-.subheading4,
-h6 {
-  font-size: var(--fs-xs);
-}
 
 body {
   background: var(--black);
@@ -204,18 +158,6 @@ button {
   padding-inline: 10px;
 }
 
-.shiki {
-  border-radius: 4px;
-  border: solid 1px var(--bg-tint);
-  font-size: var(--text-size-p);
-  padding: 20px;
-  box-shadow: var(--input-shadow);
-  overflow-x: auto;
-}
-.shiki .line {
-  line-height: 1.5;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -225,4 +167,63 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+
+body, h1, h2, h3, h4, h5, h6, li, .fluid, textarea, input, select, button, th, td, p:not(.steps p) {
+	line-height: calc(1em + 0.5rem);
+	--fl: 0;
+	--font-size-min: 14;
+	--font-size-max: 16;
+	--font-ratio-min: 1.2;
+	--font-ratio-max: 1.33;
+	--font-width-min: 320;
+	--font-width-max: 1500;
+	--font-width-min: 320;
+	--font-width-max: 1500;
+	--fluid-min: calc(var(--font-size-min) * pow(var(--font-ratio-min), var(--fl, 0)));
+	--fluid-max: calc(var(--font-size-max) * pow(var(--font-ratio-max), var(--fl, 0)));
+	--fluid-preferred: calc((var(--fluid-max) - var(--fluid-min)) / (var(--font-width-max) - var(--font-width-min)));
+	--fluid-type: clamp(
+		(var(--fluid-min) / 16) * 1rem,
+		((var(--fluid-min) / 16) * 1rem) -
+			(((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
+			(var(--fluid-preferred) * var(--variable-unit, 100vi)),
+		(var(--fluid-max) / 16) * 1rem
+	);
+	font-size: var(--fluid-type);
+}
+
+/* This makes containers, with container queries use a cqi unit instead of vi */
+.fluid-text-container {
+	container-type: inline-size;
+  --variable-unit: 100cqi;
+}
+h1, .h1 {
+	--fl: 5;
+}
+h2, .h2 {
+	--fl: 4;
+}
+h3, .h3 {
+	--fl: 3;
+}
+h4, .h4 {
+	--fl: 2;
+}
+h5, .h5 {
+	--fl: 1;
+}
+h6, .h6, p, li, body, .fs-base {
+	--fl: 0;
+}
+
+.fs-xs {
+	--fl: -1;
+}
+.fs-xxs {
+	--fl: -2;
+}
+.fs-xxxs {
+	--fl: -3;
 }
