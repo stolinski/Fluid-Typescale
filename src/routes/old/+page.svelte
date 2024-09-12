@@ -1,7 +1,7 @@
 <script lang="ts">
 	import './style.css';
 
-	import App from '../App.svelte';
+	import App from './App.svelte';
 </script>
 
 <div class="layout">
