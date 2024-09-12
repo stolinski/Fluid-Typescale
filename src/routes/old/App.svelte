@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Text from './Text.svelte';
 	import CSS from './CSS.svelte';
-	import { round } from './utils';
+	import { round } from '../utils';
 	import { slide } from 'svelte/transition';
 
 	let text = $state("You're Listening to Syntax");

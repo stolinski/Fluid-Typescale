@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { round } from './utils';
+	import { round } from '../utils';
 
 	// what's up
 	let {
